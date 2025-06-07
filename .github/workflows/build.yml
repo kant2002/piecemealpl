@@ -25,4 +25,6 @@ jobs:
       - uses: lukka/get-cmake@latest
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11 # Always specify the specific _version_ of the
+        with:
+          vcpkgGitCommitId: "4f8fe05871555c1798dbcb1957d0d595e94f7b57"
       - run: ./measure.ps1
