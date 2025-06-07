@@ -1,0 +1,26 @@
+name: Deploy Workbench site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  # Build job
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Setup Go
+        uses: actions/setup-go@v5
+      - name: Set up Rust
+        run: rustup update stable && rustup default stable
+      - uses: lukka/get-cmake@latest
+      - run: ./measure.ps1
