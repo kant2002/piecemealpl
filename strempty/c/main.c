@@ -5,6 +5,6 @@ int main() {
     char str[] = "Hello, world!";
     size_t b = strlen(str);
     if (b)
-        printfn(str);
+        printf(str);
     return 0;
 }

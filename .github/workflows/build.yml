@@ -1,4 +1,4 @@
-name: Deploy Workbench site to Pages
+name: Build samples
 
 on:
   push:
@@ -23,4 +23,6 @@ jobs:
       - name: Set up Rust
         run: rustup update stable && rustup default stable
       - uses: lukka/get-cmake@latest
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11 # Always specify the specific _version_ of the
       - run: ./measure.ps1
