@@ -64,10 +64,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | CmdLineArgs| 0 |
 | CmdLineArgs2| 4,608 |
 | ReadFile   | 512 |
-| ZipFile    | 190,464 |
+| WriteFile  | 0 |
 | CreateFile | 0 |
 | CreateDir  | 0 |
 | CreateDir2 | 1,536 |
+| ZipFile    | 190,464 |
 | Win32Window| 1,536 |
 | Win32Button| 0 |
 | ProxyCallBaseline| 512 |
@@ -87,10 +88,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | CmdLineArgs| 7,168 |
 | CmdLineArgs2| 540,160 |
 | ReadFile   | 13,312 |
-| ZipFile    | 927,744 |
+| WriteFile  | 12,288 |
 | CreateFile | 8,192 |
 | CreateDir  | 16,896 |
 | CreateDir2 | 16,896 |
+| ZipFile    | 927,744 |
 | Win32Window| 9,216 |
 | Win32Button| 512 |
 | ProxyCallBaseline| 1,024 |
@@ -110,10 +112,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | CmdLineArgs| 512 |
 | CmdLineArgs2| 2,309,120 |
 | ReadFile   | 122,880 |
-| ZipFile    | 907,264 |
+| WriteFile  | 106,496 |
 | CreateFile | 104,960 |
 | CreateDir  | 13,824 |
 | CreateDir2 | 13,824 |
+| ZipFile    | 907,264 |
 | Win32Window| 113,152 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 1,536 |
@@ -133,10 +136,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | CmdLineArgs| 0 |
 | CmdLineArgs2| 101,888 |
 | ReadFile   | 107,520 |
-| ZipFile    | 331,776 |
+| WriteFile  | 7,680 |
 | CreateFile | 8,192 |
 | CreateDir  | 4,096 |
 | CreateDir2 | 107,008 |
+| ZipFile    | 331,776 |
 | Win32Window| 440,320 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 4,096 |

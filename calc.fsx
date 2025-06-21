@@ -65,6 +65,8 @@ module App =
     let CreateDir = 17
     [<Literal>]
     let CreateDir2 = 18
+    [<Literal>]
+    let WriteFile = 19
 
 module Components =
     [<Literal>] 
@@ -105,8 +107,10 @@ module Components =
     let CreateDir = 17
     [<Literal>]
     let CreateDir2 = 18
+    [<Literal>]
+    let WriteFile = 19
 
-let m = Matrix<float>.Build.Dense(19 (*apps*), 19 (*components*))
+let m = Matrix<float>.Build.Dense(20 (*apps*), 20 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -184,6 +188,10 @@ m[App.CreateDir2,Components.Runtime] <- 1.0
 m[App.CreateDir2,Components.PrintLine] <- 1.0
 m[App.CreateDir2,Components.CreateDir2] <- 1.0
 
+m[App.WriteFile,Components.Runtime] <- 1.0
+m[App.WriteFile,Components.PrintLine] <- 1.0
+m[App.WriteFile,Components.WriteFile] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -205,6 +213,7 @@ let cParams = vector [
     15360.; // CmdLineArgs2
     10752.; // CreateDir
     12288.; // CreateDir2
+    10752.; // WriteFile
 ]
 
 // Rust values
@@ -228,6 +237,7 @@ let rustParams = vector [
     685568.; // CmdLineArgs2
     155136.; // CreateDir
     155136.; // CreateDir2
+    150528.; // WriteFile
 ]
 
 // Naot values
@@ -251,6 +261,7 @@ let naotParams = vector [
     3415040.; // CmdLineArgs2
     1119232.; // CreateDir
     1119232.; // CreateDir2
+    1211904.; // WriteFile
 ]
 
 // Go values
@@ -274,6 +285,7 @@ let goParams = vector [
     1372160.; // CmdLineArgs2
     1274368.; // CreateDir
     1377280.; // CreateDir2
+    1277952.; // WriteFile
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -298,10 +310,11 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "| CmdLineArgs| %s |" (cComponents[Components.CmdLineArgs].ToString("N0"))
     printfn "| CmdLineArgs2| %s |" (cComponents[Components.CmdLineArgs2].ToString("N0"))
     printfn "| ReadFile   | %s |" (cComponents[Components.ReadFile].ToString("N0"))
-    printfn "| ZipFile    | %s |" (cComponents[Components.ZipFile].ToString("N0"))
+    printfn "| WriteFile  | %s |" (cComponents[Components.WriteFile].ToString("N0"))
     printfn "| CreateFile | %s |" (cComponents[Components.CreateFile].ToString("N0"))
     printfn "| CreateDir  | %s |" (cComponents[Components.CreateDir].ToString("N0"))
     printfn "| CreateDir2 | %s |" (cComponents[Components.CreateDir2].ToString("N0"))
+    printfn "| ZipFile    | %s |" (cComponents[Components.ZipFile].ToString("N0"))
     printfn "| Win32Window| %s |" (cComponents[Components.Win32Window].ToString("N0"))
     printfn "| Win32Button| %s |" (cComponents[Components.Win32Button].ToString("N0"))
     printfn "| ProxyCallBaseline| %s |" (cComponents[Components.ProxyCallBaseline].ToString("N0"))

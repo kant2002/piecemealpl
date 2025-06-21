@@ -10,7 +10,7 @@
 #endif
 
 
-int create_directories(const char* path) {
+static int create_directories(const char* path) {
     char temp[1024];
     char* p = NULL;
     size_t len;

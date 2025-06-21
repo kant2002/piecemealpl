@@ -36,10 +36,10 @@
 - [CmdLineArgs](./cmdlineargs) Надрукувати усі передані аргументи командного рядку
 - [CmdLineArgs2](./cmdlineargs2) Розібрати 4 аргументи командного рядка та надрукувати їх.
 - [ReadFile](./readfile) Прочитати весь файл в консоль
-- [ZipFile](./archivefile) Архівує рядок у один файл запакований в ZIP файл.
 - [CreateFile](./createfile) Створює пустий файл із заданою назвою.
 - [CreateDir](./createdir) Створює пусту діректорію із заданою назвою.
 - [CreateDir2](./createdir2) Створює пусту діректорію із заданою назвою і усі шляхи по дорозі.
+- [ZipFile](./archivefile) Архівує рядок у один файл запакований в ZIP файл.
 - [Win32Window](./win32_window) Створити пусте Win32 вікно.
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.
 
@@ -68,10 +68,11 @@
 | CmdLineArgs| 0 |
 | CmdLineArgs2| 4,608 |
 | ReadFile   | 512 |
-| ZipFile    | 190,464 |
+| WriteFile  | 0 |
 | CreateFile | 0 |
 | CreateDir  | 0 |
 | CreateDir2 | 1,536 |
+| ZipFile    | 190,464 |
 | Win32Window| 1,536 |
 | Win32Button| 0 |
 | ProxyCallBaseline| 512 |
@@ -91,10 +92,11 @@
 | CmdLineArgs| 7,168 |
 | CmdLineArgs2| 540,160 |
 | ReadFile   | 13,312 |
-| ZipFile    | 927,744 |
+| WriteFile  | 12,288 |
 | CreateFile | 8,192 |
 | CreateDir  | 16,896 |
 | CreateDir2 | 16,896 |
+| ZipFile    | 927,744 |
 | Win32Window| 9,216 |
 | Win32Button| 512 |
 | ProxyCallBaseline| 1,024 |
@@ -114,10 +116,11 @@
 | CmdLineArgs| 512 |
 | CmdLineArgs2| 2,309,120 |
 | ReadFile   | 122,880 |
-| ZipFile    | 907,264 |
+| WriteFile  | 106,496 |
 | CreateFile | 104,960 |
 | CreateDir  | 13,824 |
 | CreateDir2 | 13,824 |
+| ZipFile    | 907,264 |
 | Win32Window| 113,152 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 1,536 |
@@ -137,10 +140,11 @@
 | CmdLineArgs| 0 |
 | CmdLineArgs2| 101,888 |
 | ReadFile   | 107,520 |
-| ZipFile    | 331,776 |
+| WriteFile  | 7,680 |
 | CreateFile | 8,192 |
 | CreateDir  | 4,096 |
 | CreateDir2 | 107,008 |
+| ZipFile    | 331,776 |
 | Win32Window| 440,320 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 4,096 |
