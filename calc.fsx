@@ -67,6 +67,8 @@ module App =
     let CreateDir2 = 18
     [<Literal>]
     let WriteFile = 19
+    [<Literal>]
+    let RandInt = 20
 
 module Components =
     [<Literal>] 
@@ -109,8 +111,10 @@ module Components =
     let CreateDir2 = 18
     [<Literal>]
     let WriteFile = 19
+    [<Literal>]
+    let RandInt = 20
 
-let m = Matrix<float>.Build.Dense(20 (*apps*), 20 (*components*))
+let m = Matrix<float>.Build.Dense(21 (*apps*), 21 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -192,6 +196,10 @@ m[App.WriteFile,Components.Runtime] <- 1.0
 m[App.WriteFile,Components.PrintLine] <- 1.0
 m[App.WriteFile,Components.WriteFile] <- 1.0
 
+m[App.RandInt,Components.Runtime] <- 1.0
+m[App.RandInt,Components.PrintLine] <- 1.0
+m[App.RandInt,Components.RandInt] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -214,6 +222,7 @@ let cParams = vector [
     10752.; // CreateDir
     12288.; // CreateDir2
     10752.; // WriteFile
+    10752.; // RandInt
 ]
 
 // Rust values
@@ -238,6 +247,7 @@ let rustParams = vector [
     155136.; // CreateDir
     155136.; // CreateDir2
     150528.; // WriteFile
+    151552.; // RandInt
 ]
 
 // Naot values
@@ -262,6 +272,7 @@ let naotParams = vector [
     1119232.; // CreateDir
     1119232.; // CreateDir2
     1211904.; // WriteFile
+    1105408.; // RandInt
 ]
 
 // Go values
@@ -286,6 +297,7 @@ let goParams = vector [
     1274368.; // CreateDir
     1377280.; // CreateDir2
     1277952.; // WriteFile
+    1354752.; // RandInt
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -319,6 +331,7 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "| Win32Button| %s |" (cComponents[Components.Win32Button].ToString("N0"))
     printfn "| ProxyCallBaseline| %s |" (cComponents[Components.ProxyCallBaseline].ToString("N0"))
     printfn "| ProxyCall  | %s |" (cComponents[Components.ProxyCall].ToString("N0"))
+    printfn "| RandInt    | %s |" (cComponents[Components.RandInt].ToString("N0"))
 
 printComponents "C language basics" cComponents
 printComponents "Rust language basics" rustComponents

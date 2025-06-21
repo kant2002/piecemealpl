@@ -43,6 +43,7 @@
 - [ZipFile](./archivefile) Архівує рядок у один файл запакований в ZIP файл.
 - [Win32Window](./win32_window) Створити пусте Win32 вікно.
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.
+- [RandInt](./randint) Сгенерувати псевдовипадкове число
 
 # Вартість абстракцій
 - [ProxyCallBaseline](./proxycall_baseline) 10 функцій із одним аргументом. Кожна із них викликається
@@ -78,6 +79,7 @@
 | Win32Button| 0 |
 | ProxyCallBaseline| 512 |
 | ProxyCall  | 0 |
+| RandInt    | 0 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -102,6 +104,7 @@
 | Win32Button| 512 |
 | ProxyCallBaseline| 1,024 |
 | ProxyCall  | 0 |
+| RandInt    | 13,312 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -126,6 +129,7 @@
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 1,536 |
 | ProxyCall  | -62,464 |
+| RandInt    | 0 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -150,3 +154,4 @@
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 4,096 |
 | ProxyCall  | 1,024 |
+| RandInt    | 84,480 |
