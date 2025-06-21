@@ -61,6 +61,10 @@ module App =
     let ProxyCall = 15
     [<Literal>]
     let CmdLineArgs2 = 16
+    [<Literal>]
+    let CreateDir = 17
+    [<Literal>]
+    let CreateDir2 = 18
 
 module Components =
     [<Literal>] 
@@ -97,8 +101,12 @@ module Components =
     let ProxyCall = 15
     [<Literal>]
     let CmdLineArgs2 = 16
+    [<Literal>]
+    let CreateDir = 17
+    [<Literal>]
+    let CreateDir2 = 18
 
-let m = Matrix<float>.Build.Dense(17 (*apps*), 17 (*components*))
+let m = Matrix<float>.Build.Dense(19 (*apps*), 19 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -168,6 +176,14 @@ m[App.CmdLineArgs2,Components.PrintLine] <- 1.0
 m[App.CmdLineArgs2,Components.CmdLineArgs] <- 1.0
 m[App.CmdLineArgs2,Components.CmdLineArgs2] <- 1.0
 
+m[App.CreateDir,Components.Runtime] <- 1.0
+m[App.CreateDir,Components.PrintLine] <- 1.0
+m[App.CreateDir,Components.CreateDir] <- 1.0
+
+m[App.CreateDir2,Components.Runtime] <- 1.0
+m[App.CreateDir2,Components.PrintLine] <- 1.0
+m[App.CreateDir2,Components.CreateDir2] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -187,6 +203,8 @@ let cParams = vector [
     11264.; // ProxyCallBaseline
     11264.; // ProxyCall
     15360.; // CmdLineArgs2
+    10752.; // CreateDir
+    12288.; // CreateDir2
 ]
 
 // Rust values
@@ -208,6 +226,8 @@ let rustParams = vector [
     139264.; // ProxyCallBaseline
     139264.; // ProxyCall
     685568.; // CmdLineArgs2
+    155136.; // CreateDir
+    155136.; // CreateDir2
 ]
 
 // Naot values
@@ -229,6 +249,8 @@ let naotParams = vector [
     1106944.; // ProxyCallBaseline
     1044480.; // ProxyCall
     3415040.; // CmdLineArgs2
+    1119232.; // CreateDir
+    1119232.; // CreateDir2
 ]
 
 // Go values
@@ -250,6 +272,8 @@ let goParams = vector [
     1274368.; // ProxyCallBaseline
     1275392.; // ProxyCall
     1372160.; // CmdLineArgs2
+    1274368.; // CreateDir
+    1377280.; // CreateDir2
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -276,6 +300,8 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "| ReadFile   | %s |" (cComponents[Components.ReadFile].ToString("N0"))
     printfn "| ZipFile    | %s |" (cComponents[Components.ZipFile].ToString("N0"))
     printfn "| CreateFile | %s |" (cComponents[Components.CreateFile].ToString("N0"))
+    printfn "| CreateDir  | %s |" (cComponents[Components.CreateDir].ToString("N0"))
+    printfn "| CreateDir2 | %s |" (cComponents[Components.CreateDir2].ToString("N0"))
     printfn "| Win32Window| %s |" (cComponents[Components.Win32Window].ToString("N0"))
     printfn "| Win32Button| %s |" (cComponents[Components.Win32Button].ToString("N0"))
     printfn "| ProxyCallBaseline| %s |" (cComponents[Components.ProxyCallBaseline].ToString("N0"))

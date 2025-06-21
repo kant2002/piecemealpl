@@ -10,6 +10,9 @@ function Build-Folder($folder)
 	echo "===== Building $folder ====="
 	pushd $folder
 	cd rust
+	if ($folder -eq "sdl2") {
+		cargo vcpkg build
+	}
 	cargo build -r
 	cd ../c
 	if (Test-Path "vcpkg.json") {
@@ -84,7 +87,7 @@ if (-not $env:VCPKG_ROOT) {
 
 $experiments = @("baseline", "sum_strings", "parse_float", "strreverse", "tolower", "strempty", "arrayinit", "cmdlineargs",
 	"cmdlineargs2",
-	"readfile", "archivefile", "createfile", 
+	"readfile", "archivefile", "createfile", "createdir", "createdir2", 
 	#"sdl2", # Go and Rust version does not compiled
 	"win32_window", "win32_button", "printline", 
 	"proxycall_baseline", "proxycall")

@@ -35,6 +35,8 @@ If you agree to help with this very mundane process, please submit PR.
 - [ReadFile](./readfile) Read file to the console
 - [ZipFile](./archivefile) Archive string into single file packaged into ZIP file.
 - [CreateFile](./createfile) Create empty file with the given name.
+- [CreateDir](./createdir) Create empty directory with the given name.
+- [CreateDir2](./createdir2) Create empty directory with the given name and all subdirectories in path.
 - [Win32Window](./win32_window) Create empty Win32 window.
 - [Win32Button](./win32_button) Create Win32 window with one button.
 
@@ -64,6 +66,8 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ReadFile   | 512 |
 | ZipFile    | 190,464 |
 | CreateFile | 0 |
+| CreateDir  | 0 |
+| CreateDir2 | 1,536 |
 | Win32Window| 1,536 |
 | Win32Button| 0 |
 | ProxyCallBaseline| 512 |
@@ -85,6 +89,8 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ReadFile   | 13,312 |
 | ZipFile    | 927,744 |
 | CreateFile | 8,192 |
+| CreateDir  | 16,896 |
+| CreateDir2 | 16,896 |
 | Win32Window| 9,216 |
 | Win32Button| 512 |
 | ProxyCallBaseline| 1,024 |
@@ -106,6 +112,8 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ReadFile   | 122,880 |
 | ZipFile    | 907,264 |
 | CreateFile | 104,960 |
+| CreateDir  | 13,824 |
+| CreateDir2 | 13,824 |
 | Win32Window| 113,152 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 1,536 |
@@ -127,6 +135,8 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ReadFile   | 107,520 |
 | ZipFile    | 331,776 |
 | CreateFile | 8,192 |
+| CreateDir  | 4,096 |
+| CreateDir2 | 107,008 |
 | Win32Window| 440,320 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 4,096 |

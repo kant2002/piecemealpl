@@ -38,6 +38,8 @@
 - [ReadFile](./readfile) Прочитати весь файл в консоль
 - [ZipFile](./archivefile) Архівує рядок у один файл запакований в ZIP файл.
 - [CreateFile](./createfile) Створює пустий файл із заданою назвою.
+- [CreateDir](./createdir) Створює пусту діректорію із заданою назвою.
+- [CreateDir2](./createdir2) Створює пусту діректорію із заданою назвою і усі шляхи по дорозі.
 - [Win32Window](./win32_window) Створити пусте Win32 вікно.
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.
 
@@ -68,6 +70,8 @@
 | ReadFile   | 512 |
 | ZipFile    | 190,464 |
 | CreateFile | 0 |
+| CreateDir  | 0 |
+| CreateDir2 | 1,536 |
 | Win32Window| 1,536 |
 | Win32Button| 0 |
 | ProxyCallBaseline| 512 |
@@ -89,6 +93,8 @@
 | ReadFile   | 13,312 |
 | ZipFile    | 927,744 |
 | CreateFile | 8,192 |
+| CreateDir  | 16,896 |
+| CreateDir2 | 16,896 |
 | Win32Window| 9,216 |
 | Win32Button| 512 |
 | ProxyCallBaseline| 1,024 |
@@ -110,6 +116,8 @@
 | ReadFile   | 122,880 |
 | ZipFile    | 907,264 |
 | CreateFile | 104,960 |
+| CreateDir  | 13,824 |
+| CreateDir2 | 13,824 |
 | Win32Window| 113,152 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 1,536 |
@@ -131,6 +139,8 @@
 | ReadFile   | 107,520 |
 | ZipFile    | 331,776 |
 | CreateFile | 8,192 |
+| CreateDir  | 4,096 |
+| CreateDir2 | 107,008 |
 | Win32Window| 440,320 |
 | Win32Button| 1,024 |
 | ProxyCallBaseline| 4,096 |
