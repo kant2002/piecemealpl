@@ -33,10 +33,11 @@ If you agree to help with this very mundane process, please submit PR.
 - [CmdLineArgs](./cmdlineargs) Printing all passed command line args
 - [CmdLineArgs2](./cmdlineargs2) Parse 4 command line arguments and print them.
 - [ReadFile](./readfile) Read file to the console
-- [ZipFile](./archivefile) Archive string into single file packaged into ZIP file.
+- [WriteFile](./writefile) Write string content to file
 - [CreateFile](./createfile) Create empty file with the given name.
 - [CreateDir](./createdir) Create empty directory with the given name.
 - [CreateDir2](./createdir2) Create empty directory with the given name and all subdirectories in path.
+- [ZipFile](./archivefile) Archive string into single file packaged into ZIP file.
 - [Win32Window](./win32_window) Create empty Win32 window.
 - [Win32Button](./win32_button) Create Win32 window with one button.
 
