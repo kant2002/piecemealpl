@@ -41,6 +41,7 @@ If you agree to help with this very mundane process, please submit PR.
 - [Win32Window](./win32_window) Create empty Win32 window.
 - [Win32Button](./win32_button) Create Win32 window with one button.
 - [RandInt](./randint) Generate pseudo random number
+- [RegexMatch](./regex_match) Check if string match with pattern defined as regular expression
 
 # Abstractions cost
 - [ProxyCallBaseline](./proxycall_baseline) 10 functions with single argument. Each of them called.
@@ -76,6 +77,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCallBaseline| 512 |
 | ProxyCall  | 0 |
 | RandInt    | 0 |
+| RegexMatch | 311,808 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -101,6 +103,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCallBaseline| 1,024 |
 | ProxyCall  | 0 |
 | RandInt    | 13,312 |
+| RegexMatch | 1,626,624 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -126,6 +129,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCallBaseline| 1,536 |
 | ProxyCall  | -62,464 |
 | RandInt    | 0 |
+| RegexMatch | 437,248 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -151,3 +155,4 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCallBaseline| 4,096 |
 | ProxyCall  | 1,024 |
 | RandInt    | 84,480 |
+| RegexMatch | 273,920 |

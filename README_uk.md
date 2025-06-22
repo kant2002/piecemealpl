@@ -44,6 +44,7 @@
 - [Win32Window](./win32_window) Створити пусте Win32 вікно.
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.
 - [RandInt](./randint) Сгенерувати псевдовипадкове число
+- [RegexMatch](./regex_match) Перевірити чи співпадає строка по шаблону із регулярного виразу
 
 # Вартість абстракцій
 - [ProxyCallBaseline](./proxycall_baseline) 10 функцій із одним аргументом. Кожна із них викликається
@@ -80,6 +81,7 @@
 | ProxyCallBaseline| 512 |
 | ProxyCall  | 0 |
 | RandInt    | 0 |
+| RegexMatch | 311,808 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -105,6 +107,7 @@
 | ProxyCallBaseline| 1,024 |
 | ProxyCall  | 0 |
 | RandInt    | 13,312 |
+| RegexMatch | 1,626,624 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -130,6 +133,7 @@
 | ProxyCallBaseline| 1,536 |
 | ProxyCall  | -62,464 |
 | RandInt    | 0 |
+| RegexMatch | 437,248 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -155,3 +159,4 @@
 | ProxyCallBaseline| 4,096 |
 | ProxyCall  | 1,024 |
 | RandInt    | 84,480 |
+| RegexMatch | 273,920 |

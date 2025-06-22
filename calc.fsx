@@ -69,6 +69,8 @@ module App =
     let WriteFile = 19
     [<Literal>]
     let RandInt = 20
+    [<Literal>]
+    let RegexMatch = 21
 
 module Components =
     [<Literal>] 
@@ -113,8 +115,10 @@ module Components =
     let WriteFile = 19
     [<Literal>]
     let RandInt = 20
+    [<Literal>]
+    let RegexMatch = 21
 
-let m = Matrix<float>.Build.Dense(21 (*apps*), 21 (*components*))
+let m = Matrix<float>.Build.Dense(22 (*apps*), 22 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -200,6 +204,10 @@ m[App.RandInt,Components.Runtime] <- 1.0
 m[App.RandInt,Components.PrintLine] <- 1.0
 m[App.RandInt,Components.RandInt] <- 1.0
 
+m[App.RegexMatch,Components.Runtime] <- 1.0
+m[App.RegexMatch,Components.PrintLine] <- 1.0
+m[App.RegexMatch,Components.RegexMatch] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -223,6 +231,7 @@ let cParams = vector [
     12288.; // CreateDir2
     10752.; // WriteFile
     10752.; // RandInt
+    322560.; // RegexMatch
 ]
 
 // Rust values
@@ -248,6 +257,7 @@ let rustParams = vector [
     155136.; // CreateDir2
     150528.; // WriteFile
     151552.; // RandInt
+    1764864.; // RegexMatch
 ]
 
 // Naot values
@@ -273,6 +283,7 @@ let naotParams = vector [
     1119232.; // CreateDir2
     1211904.; // WriteFile
     1105408.; // RandInt
+    1542656.; // RegexMatch
 ]
 
 // Go values
@@ -298,6 +309,7 @@ let goParams = vector [
     1377280.; // CreateDir2
     1277952.; // WriteFile
     1354752.; // RandInt
+    1544192.; // RegexMatch
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -332,6 +344,7 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "| ProxyCallBaseline| %s |" (cComponents[Components.ProxyCallBaseline].ToString("N0"))
     printfn "| ProxyCall  | %s |" (cComponents[Components.ProxyCall].ToString("N0"))
     printfn "| RandInt    | %s |" (cComponents[Components.RandInt].ToString("N0"))
+    printfn "| RegexMatch | %s |" (cComponents[Components.RegexMatch].ToString("N0"))
 
 printComponents "C language basics" cComponents
 printComponents "Rust language basics" rustComponents
