@@ -346,7 +346,53 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "| RandInt    | %s |" (cComponents[Components.RandInt].ToString("N0"))
     printfn "| RegexMatch | %s |" (cComponents[Components.RegexMatch].ToString("N0"))
 
+
+let printTable (cComponents: (string * Vector<float>) seq) =
+    printfn ""
+    printfn "## Cross language comparison table"
+    printfn ""
+    printf "| Component    | "
+    for (lang, _) in cComponents do
+        printf "%s - Size (B) |" lang
+    printfn ""
+    printf "| ------------    | "
+    for (_, _) in cComponents do
+        printf "-----: |"
+    printfn ""
+
+    let components = [
+        ("Runtime", Components.Runtime)
+        ("PrintLine", Components.PrintLine)
+        ("SumStrings", Components.SumStrings)
+        ("ParseFloat", Components.ParseFloat)
+        ("StrReverse", Components.StrReverse)
+        ("ToLower", Components.ToLower)
+        ("StrEmpty", Components.StrEmpty)
+        ("ArrayInit", Components.ArrayInit)
+        ("CmdLineArgs", Components.CmdLineArgs)
+        ("CmdLineArgs2", Components.CmdLineArgs2)
+        ("ReadFile", Components.ReadFile)
+        ("WriteFile", Components.WriteFile)
+        ("CreateFile", Components.CreateFile)
+        ("CreateDir", Components.CreateDir)
+        ("CreateDir2", Components.CreateDir2)
+        ("ZipFile", Components.ZipFile)
+        ("Win32Window", Components.Win32Window)
+        ("Win32Button", Components.Win32Button)
+        ("ProxyCallBaseline", Components.ProxyCallBaseline)
+        ("ProxyCall", Components.ProxyCall)
+        ("RandInt", Components.RandInt)
+        ("RegexMatch", Components.RegexMatch)
+    ]
+    for (name, code) in components do
+        printf "| %s |" name
+        for (_, items) in cComponents do
+            printf "%s |" (items[code].ToString("N0"))
+        printfn ""
+
 printComponents "C language basics" cComponents
 printComponents "Rust language basics" rustComponents
 printComponents "C# NativeAOT language basics" naotComponents
 printComponents "Go language basics" goComponents
+
+printTable [("C", cComponents); ("Rust", rustComponents); ("C#", naotComponents); ("Go", goComponents)]
