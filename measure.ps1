@@ -97,7 +97,8 @@ $experiments = @("baseline", "sum_strings", "parse_float", "strreverse", "tolowe
 	"readfile", "archivefile", "createfile", "createdir", "createdir2", 
 	#"sdl2", # Go and Rust version does not compiled
 	"win32_window", "win32_button", "printline", 
-	"proxycall_baseline", "proxycall", "tcp_simple")
+	"proxycall_baseline", "proxycall", "tcp_simple", "csv_write",
+	"parameterobjects_baseline")
 if ($Experiment) {
 		$experiments = @($Experiment)
 }

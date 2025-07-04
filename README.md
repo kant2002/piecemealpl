@@ -48,6 +48,8 @@ If you agree to help with this very mundane process, please submit PR.
 # Abstractions cost
 - [ProxyCallBaseline](./proxycall_baseline) 10 functions with single argument. Each of them called.
 - [ProxyCall](./proxycall) 10 wrapper functions which pass single constant argument to 10 underlying functions defnied same was as in the ProxyCallBaseline. Estimate usage of the abstraction.
+- [ParametersObjectBaseline](./parameterobjects_baseline) 10 functions which accept different parameters and use them.
+- [ParametersObject](./parameterobjects) 10 functions which accept different parameters as structs and use them.
 
 # Results
 
@@ -55,6 +57,7 @@ The 0 or negative numbers mean that I cannot reliably measure or guess that size
 Obviosuly that feature have non zero size. Probably I overcalculate size of the runtime + minimal main functoin, and code which needed for that already alllocated.
 
 ## C language basics
+
 | Component    | Size (B) |
 | ------------ | -----: |
 | Runtime    | 10,752 |
@@ -81,8 +84,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RegexMatch | 311,808 |
 | TcpSimple  | 1,536 |
 | CsvWrite   | 2,048 |
+| ParametersObjectBaseline| 1,024 |
+| ParametersObject| 0 |
 
 ## Rust language basics
+
 | Component    | Size (B) |
 | ------------ | -----: |
 | Runtime    | 125,440 |
@@ -109,8 +115,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RegexMatch | 1,626,624 |
 | TcpSimple  | 36,864 |
 | CsvWrite   | 49,152 |
+| ParametersObjectBaseline| 26,624 |
+| ParametersObject| 0 |
 
 ## C# NativeAOT language basics
+
 | Component    | Size (B) |
 | ------------ | -----: |
 | Runtime    | 1,044,480 |
@@ -137,8 +146,11 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RegexMatch | 437,248 |
 | TcpSimple  | 114,176 |
 | CsvWrite   | 113,664 |
+| ParametersObjectBaseline| 20,480 |
+| ParametersObject| 512 |
 
 ## Go language basics
+
 | Component    | Size (B) |
 | ------------ | -----: |
 | Runtime    | 863,744 |
@@ -165,6 +177,8 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RegexMatch | 273,920 |
 | TcpSimple  | 660,480 |
 | CsvWrite   | 25,600 |
+| ParametersObjectBaseline| 22,016 |
+| ParametersObject| 512 |
 
 ## Cross language comparison table
 
@@ -194,3 +208,5 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RegexMatch           |  311,808 |1,626,624 |  437,248 |  273,920 |
 | TcpSimple            |    1,536 |   36,864 |  114,176 |  660,480 |
 | CsvWrite             |    2,048 |   49,152 |  113,664 |   25,600 |
+| ParametersObjectBaseline |    1,024 |   26,624 |   20,480 |   22,016 |
+| ParametersObject     |        0 |        0 |      512 |      512 |

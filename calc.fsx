@@ -75,6 +75,10 @@ module App =
     let TcpSimple = 22
     [<Literal>]
     let CsvWrite = 23
+    [<Literal>]
+    let ParametersObjectBaseline = 24
+    [<Literal>]
+    let ParametersObject = 25
 
 module Components =
     [<Literal>] 
@@ -125,8 +129,12 @@ module Components =
     let TcpSimple = 22
     [<Literal>]
     let CsvWrite = 23
+    [<Literal>]
+    let ParametersObjectBaseline = 24
+    [<Literal>]
+    let ParametersObject = 25
 
-let m = Matrix<float>.Build.Dense(24 (*apps*), 24 (*components*))
+let m = Matrix<float>.Build.Dense(26 (*apps*), 26 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -224,6 +232,15 @@ m[App.CsvWrite,Components.Runtime] <- 1.0
 m[App.CsvWrite,Components.PrintLine] <- 1.0
 m[App.CsvWrite,Components.CsvWrite] <- 1.0
 
+m[App.ParametersObjectBaseline,Components.Runtime] <- 1.0
+m[App.ParametersObjectBaseline,Components.PrintLine] <- 1.0
+m[App.ParametersObjectBaseline,Components.ParametersObjectBaseline] <- 1.0
+
+m[App.ParametersObject,Components.Runtime] <- 1.0
+m[App.ParametersObject,Components.PrintLine] <- 1.0
+m[App.ParametersObject,Components.ParametersObjectBaseline] <- 1.0
+m[App.ParametersObject,Components.ParametersObject] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -250,6 +267,8 @@ let cParams = vector [
     322560.; // RegexMatch
     12288.; // TcpSimple
     12800.; // CsvWrite
+    11776.; // ParametersObjectBaseline
+    11776.; // ParametersObject
 ]
 
 // Rust values
@@ -278,6 +297,8 @@ let rustParams = vector [
     1764864.; // RegexMatch
     175104.; // TcpSimple
     187392.; // CsvWrite
+    164864.; // ParametersObjectBaseline
+    164864.; // ParametersObject
 ]
 
 // Naot values
@@ -306,6 +327,8 @@ let naotParams = vector [
     1542656.; // RegexMatch
     1219584.; // TcpSimple
     1219072.; // CsvWrite
+    1125888.; // ParametersObjectBaseline
+    1126400.; // ParametersObject
 ]
 
 // Go values
@@ -334,6 +357,8 @@ let goParams = vector [
     1544192.; // RegexMatch
     1930752.; // TcpSimple
     1295872.; // CsvWrite
+    1292288.; // ParametersObjectBaseline
+    1292800.; // ParametersObject
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -363,6 +388,8 @@ let components = [
     ("RegexMatch", Components.RegexMatch)
     ("TcpSimple", Components.TcpSimple)
     ("CsvWrite", Components.CsvWrite)
+    ("ParametersObjectBaseline", Components.ParametersObjectBaseline)
+    ("ParametersObject", Components.ParametersObject)
 ]
 
 let cComponents = m.Solve(cParams)
@@ -372,6 +399,7 @@ let goComponents = m.Solve(goParams)
 let printComponents header (cComponents: Vector<float>) =
     printfn ""
     printfn "## %s" header
+    printfn ""
     printfn "| Component    | Size (B) |"
     printfn "| ------------ | -----: |"
     for (name, comp) in components do
