@@ -45,6 +45,7 @@
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.
 - [RandInt](./randint) Сгенерувати псевдовипадкове число
 - [RegexMatch](./regex_match) Перевірити чи співпадає строка по шаблону із регулярного виразу
+- [TcpSimple](./tcp_simple) TCP сервер яких пише Helo World до підключеному клієнту і закриває підключення.
 
 # Вартість абстракцій
 - [ProxyCallBaseline](./proxycall_baseline) 10 функцій із одним аргументом. Кожна із них викликається
@@ -55,7 +56,6 @@
 Нульові або від’ємні значення означають, що я не можу надійно виміряти або оцінити цей розмір.
 Очевидно, ця функціональність має ненульовий розмір.
 Ймовірно, я переоцінив розмір рантайму, мінімальної функції main, і коду, який вже був виділений для цього.
-
 
 ## C language basics
 | Component    | Size (B) |
@@ -82,6 +82,7 @@
 | ProxyCall  | 0 |
 | RandInt    | 0 |
 | RegexMatch | 311,808 |
+| TcpSimple  | 1,536 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -108,6 +109,7 @@
 | ProxyCall  | 0 |
 | RandInt    | 13,312 |
 | RegexMatch | 1,626,624 |
+| TcpSimple  | 36,864 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -134,6 +136,7 @@
 | ProxyCall  | -62,464 |
 | RandInt    | 0 |
 | RegexMatch | 437,248 |
+| TcpSimple  | 114,176 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -160,6 +163,7 @@
 | ProxyCall  | 1,024 |
 | RandInt    | 84,480 |
 | RegexMatch | 273,920 |
+| TcpSimple  | 660,480 |
 
 ## Cross language comparison table
 
@@ -187,3 +191,4 @@
 | ProxyCall |0 |0 |-62,464 |1,024 |
 | RandInt |0 |13,312 |0 |84,480 |
 | RegexMatch |311,808 |1,626,624 |437,248 |273,920 |
+| TcpSimple |1,536 |36,864 |114,176 |660,480 |

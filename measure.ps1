@@ -75,10 +75,17 @@ function Format-Folder($folder)
 
 function Measure-Folder($folder)
 {
-	ls $folder/c/build/Release/$folder.exe | Select-Object Name, Length
-	ls $folder/rust/target/release/$folder.exe | Select-Object Name, Length
-	ls $folder/naot/bin/Release/net10.0/win-x64/publish/$folder.exe | Select-Object Name, Length
-	ls $folder/go/out/$folder.exe | Select-Object Name, Length
+	$c = (ls $folder/c/build/Release/$folder.exe | Select-Object -ExpandProperty Length)
+	$rust = (ls $folder/rust/target/release/$folder.exe | Select-Object -ExpandProperty Length)
+	$csharp = (ls $folder/naot/bin/Release/net10.0/win-x64/publish/$folder.exe | Select-Object -ExpandProperty Length)
+	$go = (ls $folder/go/out/$folder.exe | Select-Object -ExpandProperty Length)
+	[PSCustomObject]@{
+		Experiment = $folder
+		C = $c
+		Rust = $rust
+		CSharp = $csharp
+		Go = $go
+	}
 }
 
 if (-not $env:VCPKG_ROOT) {
@@ -90,7 +97,7 @@ $experiments = @("baseline", "sum_strings", "parse_float", "strreverse", "tolowe
 	"readfile", "archivefile", "createfile", "createdir", "createdir2", 
 	#"sdl2", # Go and Rust version does not compiled
 	"win32_window", "win32_button", "printline", 
-	"proxycall_baseline", "proxycall")
+	"proxycall_baseline", "proxycall", "tcp_simple")
 if ($Experiment) {
 		$experiments = @($Experiment)
 }

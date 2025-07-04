@@ -71,6 +71,8 @@ module App =
     let RandInt = 20
     [<Literal>]
     let RegexMatch = 21
+    [<Literal>]
+    let TcpSimple = 22
 
 module Components =
     [<Literal>] 
@@ -117,8 +119,10 @@ module Components =
     let RandInt = 20
     [<Literal>]
     let RegexMatch = 21
+    [<Literal>]
+    let TcpSimple = 22
 
-let m = Matrix<float>.Build.Dense(22 (*apps*), 22 (*components*))
+let m = Matrix<float>.Build.Dense(23 (*apps*), 23 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -208,6 +212,10 @@ m[App.RegexMatch,Components.Runtime] <- 1.0
 m[App.RegexMatch,Components.PrintLine] <- 1.0
 m[App.RegexMatch,Components.RegexMatch] <- 1.0
 
+m[App.TcpSimple,Components.Runtime] <- 1.0
+m[App.TcpSimple,Components.PrintLine] <- 1.0
+m[App.TcpSimple,Components.TcpSimple] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -232,6 +240,7 @@ let cParams = vector [
     10752.; // WriteFile
     10752.; // RandInt
     322560.; // RegexMatch
+    12288.; // TcpSimple
 ]
 
 // Rust values
@@ -258,6 +267,7 @@ let rustParams = vector [
     150528.; // WriteFile
     151552.; // RandInt
     1764864.; // RegexMatch
+    175104.; // TcpSimple
 ]
 
 // Naot values
@@ -284,6 +294,7 @@ let naotParams = vector [
     1211904.; // WriteFile
     1105408.; // RandInt
     1542656.; // RegexMatch
+    1219584.; // TcpSimple
 ]
 
 // Go values
@@ -310,9 +321,36 @@ let goParams = vector [
     1277952.; // WriteFile
     1354752.; // RandInt
     1544192.; // RegexMatch
+    1930752.; // TcpSimple
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
+
+let components = [
+    ("Runtime", Components.Runtime)
+    ("PrintLine", Components.PrintLine)
+    ("SumStrings", Components.SumStrings)
+    ("ParseFloat", Components.ParseFloat)
+    ("StrReverse", Components.StrReverse)
+    ("ToLower", Components.ToLower)
+    ("StrEmpty", Components.StrEmpty)
+    ("ArrayInit", Components.ArrayInit)
+    ("CmdLineArgs", Components.CmdLineArgs)
+    ("CmdLineArgs2", Components.CmdLineArgs2)
+    ("ReadFile", Components.ReadFile)
+    ("WriteFile", Components.WriteFile)
+    ("CreateFile", Components.CreateFile)
+    ("CreateDir", Components.CreateDir)
+    ("CreateDir2", Components.CreateDir2)
+    ("ZipFile", Components.ZipFile)
+    ("Win32Window", Components.Win32Window)
+    ("Win32Button", Components.Win32Button)
+    ("ProxyCallBaseline", Components.ProxyCallBaseline)
+    ("ProxyCall", Components.ProxyCall)
+    ("RandInt", Components.RandInt)
+    ("RegexMatch", Components.RegexMatch)
+    ("TcpSimple", Components.TcpSimple)
+]
 
 let cComponents = m.Solve(cParams)
 let rustComponents = m.Solve(rustParams)
@@ -323,28 +361,8 @@ let printComponents header (cComponents: Vector<float>) =
     printfn "## %s" header
     printfn "| Component    | Size (B) |"
     printfn "| ------------ | -----: |"
-    printfn "| Runtime    | %s |" (cComponents[Components.Runtime].ToString("N0"))
-    printfn "| PrintLine  | %s |" (cComponents[Components.PrintLine].ToString("N0"))
-    printfn "| SumStrings | %s |" (cComponents[Components.SumStrings].ToString("N0"))
-    printfn "| ParseFloat | %s |" (cComponents[Components.ParseFloat].ToString("N0"))
-    printfn "| StrReverse | %s |" (cComponents[Components.StrReverse].ToString("N0"))
-    printfn "| ToLower    | %s |" (cComponents[Components.ToLower].ToString("N0"))
-    printfn "| StrEmpty   | %s |" (cComponents[Components.StrEmpty].ToString("N0"))
-    printfn "| ArrayInit  | %s |" (cComponents[Components.ArrayInit].ToString("N0"))
-    printfn "| CmdLineArgs| %s |" (cComponents[Components.CmdLineArgs].ToString("N0"))
-    printfn "| CmdLineArgs2| %s |" (cComponents[Components.CmdLineArgs2].ToString("N0"))
-    printfn "| ReadFile   | %s |" (cComponents[Components.ReadFile].ToString("N0"))
-    printfn "| WriteFile  | %s |" (cComponents[Components.WriteFile].ToString("N0"))
-    printfn "| CreateFile | %s |" (cComponents[Components.CreateFile].ToString("N0"))
-    printfn "| CreateDir  | %s |" (cComponents[Components.CreateDir].ToString("N0"))
-    printfn "| CreateDir2 | %s |" (cComponents[Components.CreateDir2].ToString("N0"))
-    printfn "| ZipFile    | %s |" (cComponents[Components.ZipFile].ToString("N0"))
-    printfn "| Win32Window| %s |" (cComponents[Components.Win32Window].ToString("N0"))
-    printfn "| Win32Button| %s |" (cComponents[Components.Win32Button].ToString("N0"))
-    printfn "| ProxyCallBaseline| %s |" (cComponents[Components.ProxyCallBaseline].ToString("N0"))
-    printfn "| ProxyCall  | %s |" (cComponents[Components.ProxyCall].ToString("N0"))
-    printfn "| RandInt    | %s |" (cComponents[Components.RandInt].ToString("N0"))
-    printfn "| RegexMatch | %s |" (cComponents[Components.RegexMatch].ToString("N0"))
+    for (name, comp) in components do
+        printfn "| %-11s| %s |" name (cComponents[comp].ToString("N0"))
 
 
 let printTable (cComponents: (string * Vector<float>) seq) =
@@ -360,30 +378,6 @@ let printTable (cComponents: (string * Vector<float>) seq) =
         printf "-----: |"
     printfn ""
 
-    let components = [
-        ("Runtime", Components.Runtime)
-        ("PrintLine", Components.PrintLine)
-        ("SumStrings", Components.SumStrings)
-        ("ParseFloat", Components.ParseFloat)
-        ("StrReverse", Components.StrReverse)
-        ("ToLower", Components.ToLower)
-        ("StrEmpty", Components.StrEmpty)
-        ("ArrayInit", Components.ArrayInit)
-        ("CmdLineArgs", Components.CmdLineArgs)
-        ("CmdLineArgs2", Components.CmdLineArgs2)
-        ("ReadFile", Components.ReadFile)
-        ("WriteFile", Components.WriteFile)
-        ("CreateFile", Components.CreateFile)
-        ("CreateDir", Components.CreateDir)
-        ("CreateDir2", Components.CreateDir2)
-        ("ZipFile", Components.ZipFile)
-        ("Win32Window", Components.Win32Window)
-        ("Win32Button", Components.Win32Button)
-        ("ProxyCallBaseline", Components.ProxyCallBaseline)
-        ("ProxyCall", Components.ProxyCall)
-        ("RandInt", Components.RandInt)
-        ("RegexMatch", Components.RegexMatch)
-    ]
     for (name, code) in components do
         printf "| %s |" name
         for (_, items) in cComponents do

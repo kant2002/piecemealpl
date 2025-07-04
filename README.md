@@ -42,6 +42,7 @@ If you agree to help with this very mundane process, please submit PR.
 - [Win32Button](./win32_button) Create Win32 window with one button.
 - [RandInt](./randint) Generate pseudo random number
 - [RegexMatch](./regex_match) Check if string match with pattern defined as regular expression
+- [TcpSimple](./tcp_simple) The TCP server which wrote Helo World to connected client and close the connection.
 
 # Abstractions cost
 - [ProxyCallBaseline](./proxycall_baseline) 10 functions with single argument. Each of them called.
@@ -51,7 +52,6 @@ If you agree to help with this very mundane process, please submit PR.
 
 The 0 or negative numbers mean that I cannot reliably measure or guess that size. 
 Obviosuly that feature have non zero size. Probably I overcalculate size of the runtime + minimal main functoin, and code which needed for that already alllocated.
-
 
 ## C language basics
 | Component    | Size (B) |
@@ -78,6 +78,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCall  | 0 |
 | RandInt    | 0 |
 | RegexMatch | 311,808 |
+| TcpSimple  | 1,536 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -104,6 +105,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCall  | 0 |
 | RandInt    | 13,312 |
 | RegexMatch | 1,626,624 |
+| TcpSimple  | 36,864 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -130,6 +132,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCall  | -62,464 |
 | RandInt    | 0 |
 | RegexMatch | 437,248 |
+| TcpSimple  | 114,176 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -156,31 +159,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCall  | 1,024 |
 | RandInt    | 84,480 |
 | RegexMatch | 273,920 |
-
-| Component    | C - Size (B) |Rust - Size (B) |C# - Size (B) |Go - Size (B) |
-| ------------    | -----: |-----: |-----: |-----: |
-| Runtime |10,752 |125,440 |1,044,480 |863,744 |
-| PrintLine |0 |12,800 |60,928 |406,528 |
-| SumStrings |1,024 |512 |512 |0 |
-| ParseFloat |0 |17,408 |26,112 |18,432 |
-| StrReverse |0 |1,024 |14,336 |2,560 |
-| ToLower |512 |17,408 |2,560 |13,312 |
-| StrEmpty |512 |0 |0 |-512 |
-| ArrayInit |0 |512 |3,584 |512 |
-| CmdLineArgs |0 |7,168 |512 |0 |
-| CmdLineArgs2 |4,608 |540,160 |2,309,120 |101,888 |
-| ReadFile |512 |13,312 |122,880 |107,520 |
-| WriteFile |0 |12,288 |106,496 |7,680 |
-| CreateFile |0 |8,192 |104,960 |8,192 |
-| CreateDir |0 |16,896 |13,824 |4,096 |
-| CreateDir2 |1,536 |16,896 |13,824 |107,008 |
-| ZipFile |190,464 |927,744 |907,264 |331,776 |
-| Win32Window |1,536 |9,216 |113,152 |440,320 |
-| Win32Button |0 |512 |1,024 |1,024 |
-| ProxyCallBaseline |512 |1,024 |1,536 |4,096 |
-| ProxyCall |0 |0 |-62,464 |1,024 |
-| RandInt |0 |13,312 |0 |84,480 |
-| RegexMatch |311,808 |1,626,624 |437,248 |273,920 |
+| TcpSimple  | 660,480 |
 
 ## Cross language comparison table
 
@@ -208,3 +187,4 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | ProxyCall |0 |0 |-62,464 |1,024 |
 | RandInt |0 |13,312 |0 |84,480 |
 | RegexMatch |311,808 |1,626,624 |437,248 |273,920 |
+| TcpSimple |1,536 |36,864 |114,176 |660,480 |
