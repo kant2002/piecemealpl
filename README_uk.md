@@ -46,6 +46,7 @@
 - [RandInt](./randint) Сгенерувати псевдовипадкове число
 - [RegexMatch](./regex_match) Перевірити чи співпадає строка по шаблону із регулярного виразу
 - [TcpSimple](./tcp_simple) TCP сервер яких пише Helo World до підключеному клієнту і закриває підключення.
+- [CsvWrite](./csv_write) Створює простий CSV із 3 стовпчиками і правильним екрануванням даних. Усі дані захардкоджені.
 
 # Вартість абстракцій
 - [ProxyCallBaseline](./proxycall_baseline) 10 функцій із одним аргументом. Кожна із них викликається
@@ -83,6 +84,7 @@
 | RandInt    | 0 |
 | RegexMatch | 311,808 |
 | TcpSimple  | 1,536 |
+| CsvWrite   | 2,048 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -110,6 +112,7 @@
 | RandInt    | 13,312 |
 | RegexMatch | 1,626,624 |
 | TcpSimple  | 36,864 |
+| CsvWrite   | 49,152 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -137,6 +140,7 @@
 | RandInt    | 0 |
 | RegexMatch | 437,248 |
 | TcpSimple  | 114,176 |
+| CsvWrite   | 113,664 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -164,6 +168,7 @@
 | RandInt    | 84,480 |
 | RegexMatch | 273,920 |
 | TcpSimple  | 660,480 |
+| CsvWrite   | 25,600 |
 
 ## Cross language comparison table
 
@@ -192,3 +197,4 @@
 | RandInt |0 |13,312 |0 |84,480 |
 | RegexMatch |311,808 |1,626,624 |437,248 |273,920 |
 | TcpSimple |1,536 |36,864 |114,176 |660,480 |
+| CsvWrite |2,048 |49,152 |113,664 |25,600 |

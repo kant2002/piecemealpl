@@ -43,6 +43,7 @@ If you agree to help with this very mundane process, please submit PR.
 - [RandInt](./randint) Generate pseudo random number
 - [RegexMatch](./regex_match) Check if string match with pattern defined as regular expression
 - [TcpSimple](./tcp_simple) The TCP server which wrote Helo World to connected client and close the connection.
+- [CsvWrite](./csv_write) Write simple CSV file with 3 column and proper escaping. All data is hardcoded.
 
 # Abstractions cost
 - [ProxyCallBaseline](./proxycall_baseline) 10 functions with single argument. Each of them called.
@@ -79,6 +80,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RandInt    | 0 |
 | RegexMatch | 311,808 |
 | TcpSimple  | 1,536 |
+| CsvWrite   | 2,048 |
 
 ## Rust language basics
 | Component    | Size (B) |
@@ -106,6 +108,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RandInt    | 13,312 |
 | RegexMatch | 1,626,624 |
 | TcpSimple  | 36,864 |
+| CsvWrite   | 49,152 |
 
 ## C# NativeAOT language basics
 | Component    | Size (B) |
@@ -133,6 +136,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RandInt    | 0 |
 | RegexMatch | 437,248 |
 | TcpSimple  | 114,176 |
+| CsvWrite   | 113,664 |
 
 ## Go language basics
 | Component    | Size (B) |
@@ -160,6 +164,7 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RandInt    | 84,480 |
 | RegexMatch | 273,920 |
 | TcpSimple  | 660,480 |
+| CsvWrite   | 25,600 |
 
 ## Cross language comparison table
 
@@ -188,3 +193,4 @@ Obviosuly that feature have non zero size. Probably I overcalculate size of the 
 | RandInt |0 |13,312 |0 |84,480 |
 | RegexMatch |311,808 |1,626,624 |437,248 |273,920 |
 | TcpSimple |1,536 |36,864 |114,176 |660,480 |
+| CsvWrite |2,048 |49,152 |113,664 |25,600 |

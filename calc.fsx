@@ -73,6 +73,8 @@ module App =
     let RegexMatch = 21
     [<Literal>]
     let TcpSimple = 22
+    [<Literal>]
+    let CsvWrite = 23
 
 module Components =
     [<Literal>] 
@@ -121,8 +123,10 @@ module Components =
     let RegexMatch = 21
     [<Literal>]
     let TcpSimple = 22
+    [<Literal>]
+    let CsvWrite = 23
 
-let m = Matrix<float>.Build.Dense(23 (*apps*), 23 (*components*))
+let m = Matrix<float>.Build.Dense(24 (*apps*), 24 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -216,6 +220,10 @@ m[App.TcpSimple,Components.Runtime] <- 1.0
 m[App.TcpSimple,Components.PrintLine] <- 1.0
 m[App.TcpSimple,Components.TcpSimple] <- 1.0
 
+m[App.CsvWrite,Components.Runtime] <- 1.0
+m[App.CsvWrite,Components.PrintLine] <- 1.0
+m[App.CsvWrite,Components.CsvWrite] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -241,6 +249,7 @@ let cParams = vector [
     10752.; // RandInt
     322560.; // RegexMatch
     12288.; // TcpSimple
+    12800.; // CsvWrite
 ]
 
 // Rust values
@@ -268,6 +277,7 @@ let rustParams = vector [
     151552.; // RandInt
     1764864.; // RegexMatch
     175104.; // TcpSimple
+    187392.; // CsvWrite
 ]
 
 // Naot values
@@ -295,6 +305,7 @@ let naotParams = vector [
     1105408.; // RandInt
     1542656.; // RegexMatch
     1219584.; // TcpSimple
+    1219072.; // CsvWrite
 ]
 
 // Go values
@@ -322,6 +333,7 @@ let goParams = vector [
     1354752.; // RandInt
     1544192.; // RegexMatch
     1930752.; // TcpSimple
+    1295872.; // CsvWrite
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -350,6 +362,7 @@ let components = [
     ("RandInt", Components.RandInt)
     ("RegexMatch", Components.RegexMatch)
     ("TcpSimple", Components.TcpSimple)
+    ("CsvWrite", Components.CsvWrite)
 ]
 
 let cComponents = m.Solve(cParams)
