@@ -392,9 +392,9 @@ let printTable (cComponents: (string * Vector<float>) seq) =
     printfn ""
 
     for (name, code) in components do
-        printf "| %s |" name
+        printf "| %-20s |" name
         for (_, items) in cComponents do
-            printf "%s |" (items[code].ToString("N0"))
+            printf "%9s |" (items[code].ToString("N0"))
         printfn ""
 
 printComponents "C language basics" cComponents
