@@ -79,6 +79,8 @@ module App =
     let ParametersObjectBaseline = 24
     [<Literal>]
     let ParametersObject = 25
+    [<Literal>]
+    let JsonWrite = 26
 
 module Components =
     [<Literal>] 
@@ -133,8 +135,10 @@ module Components =
     let ParametersObjectBaseline = 24
     [<Literal>]
     let ParametersObject = 25
+    [<Literal>]
+    let JsonWrite = 26
 
-let m = Matrix<float>.Build.Dense(26 (*apps*), 26 (*components*))
+let m = Matrix<float>.Build.Dense(27 (*apps*), 27 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -241,6 +245,10 @@ m[App.ParametersObject,Components.PrintLine] <- 1.0
 m[App.ParametersObject,Components.ParametersObjectBaseline] <- 1.0
 m[App.ParametersObject,Components.ParametersObject] <- 1.0
 
+m[App.JsonWrite,Components.Runtime] <- 1.0
+m[App.JsonWrite,Components.PrintLine] <- 1.0
+m[App.JsonWrite,Components.JsonWrite] <- 1.0
+
 // C values
 let cParams = vector [
     10752.; // Baseline
@@ -269,6 +277,7 @@ let cParams = vector [
     12800.; // CsvWrite
     11776.; // ParametersObjectBaseline
     11776.; // ParametersObject
+    17920.; // JsonWrite
 ]
 
 // Rust values
@@ -299,6 +308,7 @@ let rustParams = vector [
     187392.; // CsvWrite
     164864.; // ParametersObjectBaseline
     164864.; // ParametersObject
+    149504.; // JsonWrite
 ]
 
 // Naot values
@@ -329,6 +339,7 @@ let naotParams = vector [
     1219072.; // CsvWrite
     1125888.; // ParametersObjectBaseline
     1126400.; // ParametersObject
+    1990144.; // JsonWrite
 ]
 
 // Go values
@@ -359,6 +370,7 @@ let goParams = vector [
     1295872.; // CsvWrite
     1292288.; // ParametersObjectBaseline
     1292800.; // ParametersObject
+    1491968.; // JsonWrite
 ]
 
 Vector<float>.Build.Dense(6 (*components*))
@@ -390,6 +402,7 @@ let components = [
     ("CsvWrite", Components.CsvWrite)
     ("ParametersObjectBaseline", Components.ParametersObjectBaseline)
     ("ParametersObject", Components.ParametersObject)
+    ("JsonWrite", Components.JsonWrite)
 ]
 
 let cComponents = m.Solve(cParams)
@@ -407,7 +420,6 @@ let printComponents header (cComponents: Vector<float>) =
 
 
 let printTable (cComponents: (string * Vector<float>) seq) =
-    printfn ""
     printfn "## Cross language comparison table"
     printfn ""
     printf "| Component    | "
@@ -425,9 +437,9 @@ let printTable (cComponents: (string * Vector<float>) seq) =
             printf "%9s |" (items[code].ToString("N0"))
         printfn ""
 
+printTable [("C", cComponents); ("Rust", rustComponents); ("C#", naotComponents); ("Go", goComponents)]
+printfn ""
 printComponents "C language basics" cComponents
 printComponents "Rust language basics" rustComponents
 printComponents "C# NativeAOT language basics" naotComponents
 printComponents "Go language basics" goComponents
-
-printTable [("C", cComponents); ("Rust", rustComponents); ("C#", naotComponents); ("Go", goComponents)]
