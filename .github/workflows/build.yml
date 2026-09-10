@@ -7,6 +7,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  packages: write
+
 jobs:
   # Build job
   build:
@@ -25,7 +28,7 @@ jobs:
         run: rustup update stable && rustup default stable
       - uses: lukka/get-cmake@latest
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11 # Always specify the specific _version_ of the
+        uses: lukka/run-vcpkg@v11.6
         with:
-          vcpkgGitCommitId: "4f8fe05871555c1798dbcb1957d0d595e94f7b57"
+          vcpkgGitCommitId: "9e593bb18ea69cc5095e012465dcd675a822ed0d" # https://github.com/microsoft/vcpkg/tree/2026.07.29
       - run: ./measure.ps1
