@@ -28,4 +28,6 @@ jobs:
         uses: lukka/run-vcpkg@v11.6
         with:
           vcpkgGitCommitId: "4f8fe05871555c1798dbcb1957d0d595e94f7b57"
+      - name: Expose GitHub runtime for vcpkg x-gha cache
+        uses: crazy-max/ghaction-github-runtime@v3
       - run: ./measure.ps1
