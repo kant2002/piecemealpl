@@ -25,9 +25,9 @@ jobs:
         run: rustup update stable && rustup default stable
       - uses: lukka/get-cmake@latest
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11.6
+        uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
           vcpkgGitCommitId: "4f8fe05871555c1798dbcb1957d0d595e94f7b57"
       - name: Expose GitHub runtime for vcpkg x-gha cache
-        uses: crazy-max/ghaction-github-runtime@v3
+        uses: crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124 # v3
       - run: ./measure.ps1
