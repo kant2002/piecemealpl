@@ -29,3 +29,9 @@ jobs:
         with:
           vcpkgGitCommitId: "a1cae005c39be7b18ba319fced856b68d7276271"
       - run: ./measure.ps1
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: results_*.csv
+          if-no-files-found: error
