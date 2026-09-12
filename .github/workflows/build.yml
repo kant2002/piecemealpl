@@ -27,5 +27,5 @@ jobs:
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11 # Always specify the specific _version_ of the
         with:
-          vcpkgGitCommitId: "4f8fe05871555c1798dbcb1957d0d595e94f7b57"
+          vcpkgGitCommitId: "a1cae005c39be7b18ba319fced856b68d7276271"
       - run: ./measure.ps1
