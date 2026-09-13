@@ -78,6 +78,8 @@ module App =
     let CopyFile = 29
     [<Literal>]
     let ParseInt = 30
+    [<Literal>]
+    let StrReplace = 31
 
 module Components =
     [<Literal>] 
@@ -142,8 +144,10 @@ module Components =
     let CopyFile = 29
     [<Literal>]
     let ParseInt = 30
+    [<Literal>]
+    let StrReplace = 31
 
-let m = Matrix<float>.Build.Dense(31 (*apps*), 31 (*components*))
+let m = Matrix<float>.Build.Dense(32 (*apps*), 32 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -160,6 +164,10 @@ m[App.ParseInt,Components.ParseInt] <- 1.0
 m[App.StrReverse,Components.Runtime] <- 1.0
 m[App.StrReverse,Components.PrintLine] <- 1.0
 m[App.StrReverse,Components.StrReverse] <- 1.0
+
+m[App.StrReplace,Components.Runtime] <- 1.0
+m[App.StrReplace,Components.PrintLine] <- 1.0
+m[App.StrReplace,Components.StrReplace] <- 1.0
 
 m[App.ToLower,Components.Runtime] <- 1.0
 m[App.ToLower,Components.PrintLine] <- 1.0
@@ -311,6 +319,7 @@ let components = [
     ("ParseFloat", Components.ParseFloat)
     ("ParseInt", Components.ParseInt)
     ("StrReverse", Components.StrReverse)
+    ("StrReplace", Components.StrReplace)
     ("ToLower", Components.ToLower)
     ("StrEmpty", Components.StrEmpty)
     ("ArrayInit", Components.ArrayInit)
