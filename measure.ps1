@@ -105,7 +105,7 @@ $experiments = @("baseline", "printline",
 	"tcp_simple", "csv_write",
 	"parameterobjects_baseline", "parameterobjects",
 	"json_write", "deletefile", "existsfile",
-	"copyfile")
+	"copyfile", "parse_int")
 if ($Experiment) {
 		$experiments = @($Experiment)
 }
