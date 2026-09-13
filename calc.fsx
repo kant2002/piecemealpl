@@ -81,6 +81,8 @@ module App =
     let ParametersObject = 25
     [<Literal>]
     let JsonWrite = 26
+    [<Literal>]
+    let DeleteFile = 27
 
 module Components =
     [<Literal>] 
@@ -137,8 +139,10 @@ module Components =
     let ParametersObject = 25
     [<Literal>]
     let JsonWrite = 26
+    [<Literal>]
+    let DeleteFile = 27
 
-let m = Matrix<float>.Build.Dense(27 (*apps*), 27 (*components*))
+let m = Matrix<float>.Build.Dense(28 (*apps*), 28 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -219,6 +223,10 @@ m[App.CreateDir2,Components.CreateDir2] <- 1.0
 m[App.WriteFile,Components.Runtime] <- 1.0
 m[App.WriteFile,Components.PrintLine] <- 1.0
 m[App.WriteFile,Components.WriteFile] <- 1.0
+
+m[App.DeleteFile,Components.Runtime] <- 1.0
+m[App.DeleteFile,Components.PrintLine] <- 1.0
+m[App.DeleteFile,Components.DeleteFile] <- 1.0
 
 m[App.RandInt,Components.Runtime] <- 1.0
 m[App.RandInt,Components.PrintLine] <- 1.0
