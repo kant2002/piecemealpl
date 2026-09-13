@@ -40,6 +40,9 @@
 - [CreateFile](./createfile) Створює пустий файл із заданою назвою.
 - [CreateDir](./createdir) Створює пусту діректорію із заданою назвою.
 - [CreateDir2](./createdir2) Створює пусту діректорію із заданою назвою і усі шляхи по дорозі.
+- [DeleteFile](./deletefile) Видаляє існуючі файли.
+- [ExistsFile](./existsfile) Перевіряє чи існує файл та друкує повідомлення.
+- [CopyFile](./copyfile) Копіює файл в інший файл.
 - [ZipFile](./archivefile) Архівує рядок у один файл запакований в ZIP файл.
 - [Win32Window](./win32_window) Створити пусте Win32 вікно.
 - [Win32Button](./win32_button) Створити Win32 вікно із однією кнопкою.

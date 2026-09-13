@@ -32,11 +32,14 @@ If you agree to help with this very mundane process, please submit PR.
 - [ArrayInit](./arrayinit) Initialize array of 100 bytes and print all 100 of them.
 - [CmdLineArgs](./cmdlineargs) Printing all passed command line args
 - [CmdLineArgs2](./cmdlineargs2) Parse 4 command line arguments and print them.
-- [ReadFile](./readfile) Read file to the console
+- [ReadFile](./readfile) Read file and prints it content to the console
 - [WriteFile](./writefile) Write string content to file
 - [CreateFile](./createfile) Create empty file with the given name.
 - [CreateDir](./createdir) Create empty directory with the given name.
 - [CreateDir2](./createdir2) Create empty directory with the given name and all subdirectories in path.
+- [DeleteFile](./deletefile) Delete existing file.
+- [ExistsFile](./existsfile) Check if file exists and print message.
+- [CopyFile](./copyfile) Copy file into other file.
 - [ZipFile](./archivefile) Archive string into single file packaged into ZIP file.
 - [Win32Window](./win32_window) Create empty Win32 window.
 - [Win32Button](./win32_button) Create Win32 window with one button.
@@ -44,6 +47,7 @@ If you agree to help with this very mundane process, please submit PR.
 - [RegexMatch](./regex_match) Check if string match with pattern defined as regular expression
 - [TcpSimple](./tcp_simple) The TCP server which wrote Helo World to connected client and close the connection.
 - [CsvWrite](./csv_write) Write simple CSV file with 3 column and proper escaping. All data is hardcoded.
+- [JsonWrite](./json_write) Write simple JSON with 3 properties. All data is hardcoded.
 
 # Abstractions cost
 - [ProxyCallBaseline](./proxycall_baseline) 10 functions with single argument. Each of them called.
