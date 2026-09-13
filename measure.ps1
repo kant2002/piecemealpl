@@ -92,13 +92,18 @@ if (-not $env:VCPKG_ROOT) {
 	$env:VCPKG_ROOT = "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\vcpkg"
 }
 
-$experiments = @("baseline", "sum_strings", "parse_float", "strreverse", "tolower", "strempty", "arrayinit", "cmdlineargs",
-	"cmdlineargs2",
-	"readfile", "archivefile", "createfile", "createdir", "createdir2", 
+$experiments = @("baseline", "printline", 
+    "sum_strings", "parse_float", "strreverse", "tolower", "strempty", 
+    "arrayinit", "cmdlineargs", "cmdlineargs2",
+	"readfile", "writefile", "createfile", 
+	"createdir", "createdir2", "archivefile", 
 	#"sdl2", # Go and Rust version does not compiled
-	"win32_window", "win32_button", "printline", 
-	"proxycall_baseline", "proxycall", "tcp_simple", "csv_write", "regex_match",
-	"parameterobjects_baseline", "parameterobjects")
+	"win32_window", "win32_button", 
+	"proxycall_baseline", "proxycall", 
+	"randint", "regex_match",
+	"tcp_simple", "csv_write",
+	"parameterobjects_baseline", "parameterobjects",
+	"json_write")
 if ($Experiment) {
 		$experiments = @($Experiment)
 }

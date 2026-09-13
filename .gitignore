@@ -5,3 +5,4 @@ out/
 bin/
 obj/
 vcpkg_installed/
+results_*.csv
