@@ -13,25 +13,27 @@ var rootCommand = new RootCommand("Test")
     r,
 };
 
-rootCommand.SetHandler((f, i, l, r) =>
+rootCommand.SetAction(parseResult =>
 {
-    if (!string.IsNullOrEmpty(f)) 
+    var (fValue, iValue, lValue, rValue) = (parseResult.GetValue(f), parseResult.GetValue(i), parseResult.GetValue(l), parseResult.GetValue(r));
+    if (!string.IsNullOrEmpty(fValue)) 
     {
-        Console.WriteLine($"filename : {f}");
+        Console.WriteLine($"filename : {fValue}");
     }
-    if (i.HasValue)
+    if (iValue.HasValue)
     {
-        Console.WriteLine($"option : {i.Value}");
+        Console.WriteLine($"option : {iValue.Value}");
     }
-    if (l.HasValue)
+    if (lValue.HasValue)
     {
-        Console.WriteLine($"option : {l.Value}");
+        Console.WriteLine($"option : {lValue.Value}");
     }
-    if (r.HasValue)
+    if (rValue.HasValue)
     {
-        Console.WriteLine($"option : {r.Value}");
+        Console.WriteLine($"option : {rValue.Value}");
     }
 
-}, f, i, l, r);
+});
 
-await rootCommand.InvokeAsync(args);
+ParseResult parseResult = rootCommand.Parse(args);
+return parseResult.Invoke();
