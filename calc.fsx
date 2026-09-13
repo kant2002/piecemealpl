@@ -30,43 +30,43 @@ module App =
     [<Literal>]
     let Baseline = 0
     [<Literal>]
-    let SumStrings = 1
+    let PrintLine = 1
     [<Literal>]
-    let ParseFloat = 2
+    let SumStrings = 2
     [<Literal>]
-    let StrReverse = 3
+    let ParseFloat = 3
     [<Literal>]
-    let ToLower = 4
+    let StrReverse = 4
     [<Literal>]
-    let StrEmpty = 5
+    let ToLower = 5
     [<Literal>]
-    let ArrayInit = 6
+    let StrEmpty = 6
     [<Literal>]
-    let CmdLineArgs = 7
+    let ArrayInit = 7
     [<Literal>]
-    let ReadFile = 8
+    let CmdLineArgs = 8
     [<Literal>]
-    let ZipFile = 9
+    let CmdLineArgs2 = 9
     [<Literal>]
-    let CreateFile = 10
+    let ReadFile = 10
     [<Literal>]
-    let Win32Window = 11
+    let WriteFile = 11
     [<Literal>]
-    let Win32Button = 12
+    let CreateFile = 12
     [<Literal>]
-    let PrintLine = 13
+    let CreateDir = 13
     [<Literal>]
-    let ProxyCallBaseline = 14
+    let CreateDir2 = 14
     [<Literal>]
-    let ProxyCall = 15
+    let ZipFile = 15
     [<Literal>]
-    let CmdLineArgs2 = 16
+    let Win32Window = 16
     [<Literal>]
-    let CreateDir = 17
+    let Win32Button = 17
     [<Literal>]
-    let CreateDir2 = 18
+    let ProxyCallBaseline = 18
     [<Literal>]
-    let WriteFile = 19
+    let ProxyCall = 19
     [<Literal>]
     let RandInt = 20
     [<Literal>]
@@ -249,129 +249,38 @@ m[App.JsonWrite,Components.Runtime] <- 1.0
 m[App.JsonWrite,Components.PrintLine] <- 1.0
 m[App.JsonWrite,Components.JsonWrite] <- 1.0
 
+// Load measured binary sizes from the most recent results_*.csv file.
+// The row order in the CSV matches the App enum order used below.
+open System.IO
+open System.Globalization
+
+let private rows =
+    let latest =
+        Directory.GetFiles(__SOURCE_DIRECTORY__, "results_*.csv")
+        |> Array.sort
+        |> Array.last
+    File.ReadAllLines(latest)
+    |> Array.skip 1
+    |> Array.filter (fun line -> line.Trim() <> "")
+    |> Array.map (fun line ->
+        let cols = line.Split(',') |> Array.map (fun s -> s.Trim('"'))
+        let value i = Double.Parse(cols.[i], CultureInfo.InvariantCulture)
+        (value 1, value 2, value 3, value 4))
+
+let private paramVector selector =
+    rows |> Array.map selector |> vector
+
 // C values
-let cParams = vector [
-    10752.; // Baseline
-    11776.; // SumStrings
-    10752.; // ParseFloat
-    10752.; // StrReverse
-    11264.; // ToLower
-    11264.; // StrEmpty
-    10752.; // ArrayInit
-    10752.; // CmdLineArgs
-    11264.; // ReadFile
-    201216.; // ZipFile
-    10752.; // CreateFile
-    12288.; // Win32Window
-    12288.; // Win32Button
-    10752.; // PrintLine
-    11264.; // ProxyCallBaseline
-    11264.; // ProxyCall
-    15360.; // CmdLineArgs2
-    10752.; // CreateDir
-    12288.; // CreateDir2
-    10752.; // WriteFile
-    10752.; // RandInt
-    322560.; // RegexMatch
-    12288.; // TcpSimple
-    12800.; // CsvWrite
-    11776.; // ParametersObjectBaseline
-    11776.; // ParametersObject
-    17920.; // JsonWrite
-]
+let cParams = paramVector (fun (c, _, _, _) -> c)
 
 // Rust values
-let rustParams = vector [
-    125440.; // Baseline
-    138752.; // SumStrings
-    155648.; // ParseFloat
-    139264.; // StrReverse
-    155648.; // ToLower
-    138240.; // StrEmpty
-    138752.; // ArrayInit
-    145408.; // CmdLineArgs
-    151552.; // ReadFile
-    1074176.; // ZipFile
-    146432.; // CreateFile
-    134656.; // Win32Window
-    135168.; // Win32Button
-    138240.; // PrintLine
-    139264.; // ProxyCallBaseline
-    139264.; // ProxyCall
-    685568.; // CmdLineArgs2
-    155136.; // CreateDir
-    155136.; // CreateDir2
-    150528.; // WriteFile
-    151552.; // RandInt
-    1764864.; // RegexMatch
-    175104.; // TcpSimple
-    187392.; // CsvWrite
-    164864.; // ParametersObjectBaseline
-    164864.; // ParametersObject
-    149504.; // JsonWrite
-]
+let rustParams = paramVector (fun (_, r, _, _) -> r)
 
 // Naot values
-let naotParams = vector [
-    1044480.; // Baseline
-    1105920.; // SumStrings
-    1131520.; // ParseFloat
-    1119744.; // StrReverse
-    1107968.; // ToLower
-    1105408.; // StrEmpty
-    1108992.; // ArrayInit
-    1105920.; // CmdLineArgs
-    1228288.; // ReadFile
-    2117632.; // ZipFile
-    1210368.; // CreateFile
-    1157632.; // Win32Window
-    1158656.; // Win32Button
-    1105408.; // PrintLine
-    1106944.; // ProxyCallBaseline
-    1044480.; // ProxyCall
-    3415040.; // CmdLineArgs2
-    1119232.; // CreateDir
-    1119232.; // CreateDir2
-    1211904.; // WriteFile
-    1105408.; // RandInt
-    1542656.; // RegexMatch
-    1219584.; // TcpSimple
-    1219072.; // CsvWrite
-    1125888.; // ParametersObjectBaseline
-    1126400.; // ParametersObject
-    1990144.; // JsonWrite
-]
+let naotParams = paramVector (fun (_, _, n, _) -> n)
 
 // Go values
-let goParams = vector [
-    863744.; // Baseline
-    1270272.; // SumStrings
-    1288704.; // ParseFloat
-    1272832.; // StrReverse
-    1283584.; // ToLower
-    1269760.; // StrEmpty
-    1270784.; // ArrayInit
-    1270272.; // CmdLineArgs
-    1377792.; // ReadFile
-    1610240.; // ZipFile
-    1278464.; // CreateFile
-    1304064.; // Win32Window
-    1305088.; // Win32Button
-    1270272.; // PrintLine
-    1274368.; // ProxyCallBaseline
-    1275392.; // ProxyCall
-    1372160.; // CmdLineArgs2
-    1274368.; // CreateDir
-    1377280.; // CreateDir2
-    1277952.; // WriteFile
-    1354752.; // RandInt
-    1544192.; // RegexMatch
-    1930752.; // TcpSimple
-    1295872.; // CsvWrite
-    1292288.; // ParametersObjectBaseline
-    1292800.; // ParametersObject
-    1491968.; // JsonWrite
-]
+let goParams = paramVector (fun (_, _, _, g) -> g)
 
 Vector<float>.Build.Dense(6 (*components*))
 
@@ -413,28 +322,28 @@ let printComponents header (cComponents: Vector<float>) =
     printfn ""
     printfn "## %s" header
     printfn ""
-    printfn "| Component    | Size (B) |"
-    printfn "| ------------ | -----: |"
+    printfn "| Component                | Size (B)  |"
+    printfn "| ------------------------ | --------: |"
     for (name, comp) in components do
-        printfn "| %-11s| %s |" name (cComponents[comp].ToString("N0"))
+        printfn "| %-25s| %9s |" name (cComponents[comp].ToString("N0", CultureInfo.InvariantCulture))
 
 
 let printTable (cComponents: (string * Vector<float>) seq) =
     printfn "## Cross language comparison table"
     printfn ""
-    printf "| Component    | "
+    printf "| Component                 | "
     for (lang, _) in cComponents do
         printf "%s - Size (B) |" lang
     printfn ""
-    printf "| ------------    | "
+    printf "| ----------------------    | "
     for (_, _) in cComponents do
-        printf "-----: |"
+        printf "-------: |"
     printfn ""
 
     for (name, code) in components do
-        printf "| %-20s |" name
+        printf "| %-25s |" name
         for (_, items) in cComponents do
-            printf "%9s |" (items[code].ToString("N0"))
+            printf "%9s |" (items[code].ToString("N0", CultureInfo.InvariantCulture))
         printfn ""
 
 printTable [("C", cComponents); ("Rust", rustComponents); ("C#", naotComponents); ("Go", goComponents)]
