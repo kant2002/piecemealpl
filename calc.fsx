@@ -1,23 +1,12 @@
 #r "nuget: MathNet.Numerics, 5.0.0"
 #r "nuget: MathNet.Numerics.FSharp, 5.0.0"
 
-// Illustrates solving systems of simultaneous linear
-// equations using the DenseMatrix and LUDecomposition classes 
-// in the Numerics.NET.LinearAlgebra namespace of Numerics.NET.
-
-#light
-
 open System
 
 open MathNet.Numerics
 // The DenseMatrix and LUDecomposition classes reside in the 
 // Numerics.NET.LinearAlgebra namespace.
 open MathNet.Numerics.LinearAlgebra
-
-// The license is verified at runtime. We're using a 30 day trial key here.
-// For more information, see:
-//     https://numerics.net/trial-key
-//let licensed = Numerics.NET.License.Verify("64542-18980-57619-62268")
 
 // A system of simultaneous linear equations is
 // defined by a square matrix A and a right-hand
@@ -83,6 +72,8 @@ module App =
     let JsonWrite = 26
     [<Literal>]
     let DeleteFile = 27
+    [<Literal>]
+    let ExistsFile = 28
 
 module Components =
     [<Literal>] 
@@ -141,8 +132,10 @@ module Components =
     let JsonWrite = 26
     [<Literal>]
     let DeleteFile = 27
+    [<Literal>]
+    let ExistsFile = 28
 
-let m = Matrix<float>.Build.Dense(28 (*apps*), 28 (*components*))
+let m = Matrix<float>.Build.Dense(29 (*apps*), 29 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -228,6 +221,10 @@ m[App.DeleteFile,Components.Runtime] <- 1.0
 m[App.DeleteFile,Components.PrintLine] <- 1.0
 m[App.DeleteFile,Components.DeleteFile] <- 1.0
 
+m[App.DeleteFile,Components.Runtime] <- 1.0
+m[App.DeleteFile,Components.PrintLine] <- 1.0
+m[App.ExistsFile,Components.ExistsFile] <- 1.0
+
 m[App.RandInt,Components.Runtime] <- 1.0
 m[App.RandInt,Components.PrintLine] <- 1.0
 m[App.RandInt,Components.RandInt] <- 1.0
@@ -308,6 +305,8 @@ let components = [
     ("CreateFile", Components.CreateFile)
     ("CreateDir", Components.CreateDir)
     ("CreateDir2", Components.CreateDir2)
+    ("DeleteFile", Components.DeleteFile)
+    ("ExistsFile", Components.ExistsFile)
     ("ZipFile", Components.ZipFile)
     ("Win32Window", Components.Win32Window)
     ("Win32Button", Components.Win32Button)
