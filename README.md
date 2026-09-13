@@ -26,7 +26,9 @@ If you agree to help with this very mundane process, please submit PR.
 - [PrintLine](./printline) Print line to the console.
 - [SumStrings](./sum_strings) The perform concatenation of two string types in the language.
 - [ParseFloat](./parse_float) Parse string with float value into float32 datatype.
+- [ParseInt](./parse_int) Parse string with integer value into int32 datatype.
 - [StrReverse](./strreverse) Reverse constant string
+- [StrReplace](./strreplace) Replace constant search string with target string one time
 - [ToLower](./tolower) Convert string to lowercase using default locale parameters in the langugage.
 - [StrEmpty](./strempty) Check that string is empty.
 - [ArrayInit](./arrayinit) Initialize array of 100 bytes and print all 100 of them.

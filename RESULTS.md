@@ -6,7 +6,9 @@
 | PrintLine                 |        0 |    7,168 |   65,024 |  442,368 |
 | SumStrings                |    1,024 |      512 |        0 |        0 |
 | ParseFloat                |      512 |   17,920 |   26,112 |   17,920 |
+| ParseInt                  |        0 |        0 |    1,024 |   23,040 |
 | StrReverse                |      512 |    1,536 |   16,896 |    1,536 |
+| StrReplace                |      512 |    2,560 |    7,168 |   11,776 |
 | ToLower                   |    1,024 |    8,704 |    2,048 |   14,336 |
 | StrEmpty                  |    1,024 |        0 |        0 |        0 |
 | ArrayInit                 |        0 |      512 |    3,584 |    1,024 |
@@ -42,7 +44,9 @@
 | PrintLine                |         0 |
 | SumStrings               |     1,024 |
 | ParseFloat               |       512 |
+| ParseInt                 |         0 |
 | StrReverse               |       512 |
+| StrReplace               |       512 |
 | ToLower                  |     1,024 |
 | StrEmpty                 |     1,024 |
 | ArrayInit                |         0 |
@@ -77,7 +81,9 @@
 | PrintLine                |     7,168 |
 | SumStrings               |       512 |
 | ParseFloat               |    17,920 |
+| ParseInt                 |         0 |
 | StrReverse               |     1,536 |
+| StrReplace               |     2,560 |
 | ToLower                  |     8,704 |
 | StrEmpty                 |         0 |
 | ArrayInit                |       512 |
@@ -112,7 +118,9 @@
 | PrintLine                |    65,024 |
 | SumStrings               |         0 |
 | ParseFloat               |    26,112 |
+| ParseInt                 |     1,024 |
 | StrReverse               |    16,896 |
+| StrReplace               |     7,168 |
 | ToLower                  |     2,048 |
 | StrEmpty                 |         0 |
 | ArrayInit                |     3,584 |
@@ -147,7 +155,9 @@
 | PrintLine                |   442,368 |
 | SumStrings               |         0 |
 | ParseFloat               |    17,920 |
+| ParseInt                 |    23,040 |
 | StrReverse               |     1,536 |
+| StrReplace               |    11,776 |
 | ToLower                  |    14,336 |
 | StrEmpty                 |         0 |
 | ArrayInit                |     1,024 |
