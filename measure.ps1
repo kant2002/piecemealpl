@@ -23,7 +23,8 @@ function Build-Folder($folder)
 	
 	cmake --build build --config Release
 	cd ../naot
-	dotnet publish
+	# Be explicit about the configuration to avoid defaulting to Debug
+	dotnet publish -c Release
 	cd ../go
 	go mod tidy
 	go build -o out/ -ldflags "-s -w"
@@ -103,7 +104,7 @@ $experiments = @("baseline", "printline",
 	"randint", "regex_match",
 	"tcp_simple", "csv_write",
 	"parameterobjects_baseline", "parameterobjects",
-	"json_write")
+	"json_write", "deletefile")
 if ($Experiment) {
 		$experiments = @($Experiment)
 }
