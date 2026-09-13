@@ -121,7 +121,11 @@ else
 		Build-Folder $experiment
 	}
 
+	$experimentResults = @()
 	foreach ($experiment in $experiments) {
-		Measure-Folder $experiment
+		$experimentResults += Measure-Folder $experiment
 	}
+
+	$csvFile = "results_$(Get-Date -Format 'yyyyMMdd_HHmm').csv"
+	$experimentResults | Export-Csv -Path $csvFile
 }
