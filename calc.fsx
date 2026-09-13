@@ -74,6 +74,8 @@ module App =
     let DeleteFile = 27
     [<Literal>]
     let ExistsFile = 28
+    [<Literal>]
+    let CopyFile = 29
 
 module Components =
     [<Literal>] 
@@ -134,8 +136,10 @@ module Components =
     let DeleteFile = 27
     [<Literal>]
     let ExistsFile = 28
+    [<Literal>]
+    let CopyFile = 29
 
-let m = Matrix<float>.Build.Dense(29 (*apps*), 29 (*components*))
+let m = Matrix<float>.Build.Dense(30 (*apps*), 30 (*components*))
 m[App.Baseline, Components.Runtime] <- 1.0
 
 m[App.SumStrings,Components.Runtime] <- 1.0
@@ -221,9 +225,13 @@ m[App.DeleteFile,Components.Runtime] <- 1.0
 m[App.DeleteFile,Components.PrintLine] <- 1.0
 m[App.DeleteFile,Components.DeleteFile] <- 1.0
 
-m[App.DeleteFile,Components.Runtime] <- 1.0
-m[App.DeleteFile,Components.PrintLine] <- 1.0
+m[App.ExistsFile,Components.Runtime] <- 1.0
+m[App.ExistsFile,Components.PrintLine] <- 1.0
 m[App.ExistsFile,Components.ExistsFile] <- 1.0
+
+m[App.CopyFile,Components.Runtime] <- 1.0
+m[App.CopyFile,Components.PrintLine] <- 1.0
+m[App.CopyFile,Components.CopyFile] <- 1.0
 
 m[App.RandInt,Components.Runtime] <- 1.0
 m[App.RandInt,Components.PrintLine] <- 1.0
@@ -307,6 +315,7 @@ let components = [
     ("CreateDir2", Components.CreateDir2)
     ("DeleteFile", Components.DeleteFile)
     ("ExistsFile", Components.ExistsFile)
+    ("CopyFile", Components.CopyFile)
     ("ZipFile", Components.ZipFile)
     ("Win32Window", Components.Win32Window)
     ("Win32Button", Components.Win32Button)
@@ -344,7 +353,7 @@ let printTable (cComponents: (string * Vector<float>) seq) =
     printfn ""
     printf "| ----------------------    | "
     for (_, _) in cComponents do
-        printf "-------: |"
+        printf "-------: | "
     printfn ""
 
     for (name, code) in components do
