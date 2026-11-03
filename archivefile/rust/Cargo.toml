@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-"zip" = "4.0.0"
+"zip" = "9.0.5"
